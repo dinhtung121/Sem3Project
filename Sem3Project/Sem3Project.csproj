@@ -188,6 +188,7 @@
     <Compile Include="Entites\RegionDTO.cs" />
     <Compile Include="Entites\ReportDTO.cs" />
     <Compile Include="Entites\ShipperDTO.cs" />
+    <Compile Include="Entites\ShipperViewStore.cs" />
     <Compile Include="Entites\SupplyDTO.cs" />
     <Compile Include="Entites\TerritoryDTO.cs" />
     <Compile Include="Global.asax.cs">
