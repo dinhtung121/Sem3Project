@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout2.cshtml";
+}
+
+<h2>Maintain Employee</h2>
+<section>
+    <section class="col col-md-10">
+        <section class="col col-md-offset-2">
+            <a onclick="createNewEmployee()" href="#" class="btn btn-primary">Create New Employee</a>
+        </section>
+    </section>
+
+    <table id="data-table" class="table table-hover">
+        <thead>
+            <tr>
+                <th>Employee ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Title</th>
+                <th>TitleOfCourtesy</th>
+                <th>HireDate</th>
+                <th>Image</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="content-data"></tbody>
+
+    </table>
+</section>
+<div id="dashboardModalWrapper" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="width:100%; height:auto;">
+        <div class="modal-content">
+            <div id='dashboardModalContent'></div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/admin/employee/index.js"></script>
+<script type="text/javascript">
+    function createNewEmployee(e) {
+
+        var url = "/Admin/Employee/Create";
+
+        $('#dashboardModalContent').load(url, function () {
+            $('#dashboardModalWrapper').modal({
+                backdrop: 'static',
+                keyboard: false
+            }, 'show');
+        });
+        
+    }
+    function showEdit(e) {
+
+        var url = "/Admin/Employee/Edit?id="+ e;
+
+        $('#dashboardModalContent').load(url, function () {
+            $('#dashboardModalWrapper').modal({
+                backdrop: 'static',
+                keyboard: false
+            },'show');
+        });
+
+    }
+    function showDetail(e) {
+
+        var url = "/Admin/Employee/Details?id=" + e;
+
+        $('#dashboardModalContent').load(url, function () {
+            $('#dashboardModalWrapper').modal({
+                backdrop: 'static',
+                keyboard: false
+            },'show');
+        });
+
+    }
+</script>
+

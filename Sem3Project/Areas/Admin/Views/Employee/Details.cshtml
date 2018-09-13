@@ -1,0 +1,63 @@
+﻿@model DTO.EmployeeDTO
+@{
+    ViewBag.Title = "Details";
+}
+<section class="modal-header">
+    <h2 class="text-center">@Model.FirstName &nbsp; @Model.LastName</h2>
+</section>
+
+
+
+<div class="modal-body row">
+    <img title="@Model.PhotoPath" src="@Url.Content(String.Format("~/Upload/Employee/" + Model.PhotoPath))" class="col col-md-offset-4" style="height: 300px;width: 300px;" />
+    <h4 class="col col col-md-offset-4">First Name          : @Model.FirstName</h4>
+    <h4 class="col col col-md-offset-4">Last Name           : @Model.LastName</h4>
+    <h4 class="col col col-md-offset-4">Title               : @Model.Title</h4>
+    <h4 class="col col col-md-offset-4">Title Of Courtesy   : @Model.TitleOfCourtesy</h4>
+    <h4 class="col col col-md-offset-4">Birth Date          : @Model.BirthDate</h4>
+    <h4 class="col col col-md-offset-4">Hire Date           : @Model.HireDate</h4>
+    <h4 class="col col col-md-offset-4">Address             : @Model.Address</h4>
+    <h4 class="col col col-md-offset-4">City                : @Model.City</h4>
+    <h4 class="col col col-md-offset-4">Region              : @Model.Region</h4>
+    <h4 class="col col col-md-offset-4">Postal Code         : @Model.PostalCode</h4>
+    <h4 class="col col col-md-offset-4">Country             : @Model.Country</h4>
+    <h4 class="col col col-md-offset-4">Home Phone          : @Model.HomePhone</h4>
+    <h4 class="col col col-md-offset-4">Extension           : @Model.Extension</h4>
+    <h4 class="col col col-md-offset-4">Notes               : @Model.Notes</h4>
+    <h4 class="col col col-md-offset-4">Reports To          : @Model.ReportsTo</h4>
+</div>
+<section class="modal-footer">
+    <p>
+        <a class="btn btn-lg btn-primary" onclick="showEdit('@Model.EmployeeID')" href="#" title="Edit this employee"><span class="glyphicon glyphicon-edit"><i></i></span></a>
+        &nbsp;&nbsp;<button class="btn btn-lg btn-danger" id="delete-button" data-dismiss="modal"  value="@Model.EmployeeID" title="Delete this employee"><span class="glyphicon glyphicon-trash"></span></button>&nbsp;
+        <a class="btn btn-lg btn-success" href="#" data-dismiss="modal" title="Back to list"><span class="glyphicon glyphicon-list"><i></i></span></a>
+    </p>
+</section>
+
+<script src="~/Scripts/admin/employee/details.js"></script>
+<script type="text/javascript">
+    function showEdit(e) {
+
+        var url = "/Admin/Employee/Edit?id=" + e;
+
+        $('#dashboardModalContent').load(url, function () {
+            $('#dashboardModalWrapper').modal({
+                backdrop: 'static',
+                keyboard: false
+            }, 'show');
+        });
+
+    }
+    function showDetail(e) {
+
+        var url = "/Admin/Employee/Details?id=" + e;
+
+        $('#dashboardModalContent').load(url, function () {
+            $('#dashboardModalWrapper').modal({
+                backdrop: 'static',
+                keyboard: false
+            }, 'show');
+        });
+
+    }
+</script>

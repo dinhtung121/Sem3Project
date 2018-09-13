@@ -1,0 +1,195 @@
+﻿@using Sem3Project.Entites
+@{
+    ViewBag.Title = "Create";
+    var list = ViewBag.listAdmin;
+}
+<section class="modal-header">
+    <h2>Create a Employee</h2>
+</section>
+
+<section class="modal-body row">
+    <section>
+        <div><p class="text-danger" id="create-valid"></p></div>
+        <form class="form-horizontal" id="form" method="post" enctype="multipart/form-data">
+            <section class="col-md-6">
+                <div class="form-group">
+                    <label for="name" class="control-label col-sm-2">First Name</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="first-name" maxlength="10" placeholder="Enter first name" style="width:280px;" />
+                            <span class="text-danger" id="first-name-valid"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="control-label col-sm-2">Last Name</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="last-name" maxlength="20" placeholder="Enter last name" style="width:280px;" />
+                            <span class="text-danger" id="last-name-valid"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="title" class="col-sm-2 control-label">Title</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <select class="form-control " id="title" style="width: 280px;">
+                                <option value="Vice President">Vice President</option>
+                                <option value="Sales Manager">Sales Manager</option>
+                                <option value="Inside Sales Coordinator">Inside Sales Coordinator</option>
+                                <option value="Sales Representative">Sales Representative</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="title-of-courtesy" class="col-sm-2 control-label">Title Of Courtesy</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <select class="form-control " id="title-of-courtesy" style="width: 280px;">
+                                <option value="Ms.">Ms.</option>
+                                <option value="Dr.">Dr.</option>
+                                <option value="Mrs.">Mrs.</option>
+                                <option value="Mr.">Mr.</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="birth-date" class="col-sm-2 control-label">Birth Date</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <input type="date" class="form-control" id="birth-date" style="width:280px;" />
+                            <span class="text-danger" id="birth-date-valid"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="hire-date" class="col-sm-2 control-label">Hire Date</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <input type="date" class="form-control" id="hire-date" style="width:280px;" />
+                            <span class="text-danger" id="hire-date-valid"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="report-to" class="col-sm-2 control-label">Report To</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <select class="form-control " id="report-to" style="width: 280px;">
+                                @{
+                        foreach (var x in list)
+                        {
+                            string text = x.FirstName + " " + x.LastName;
+                            <option value="@x.EmployeeID">@text </option>
+}
+                                }
+
+
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="employee-image" class="col-sm-2 control-label">Image</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <input type="file" onchange="loadFile(event)" class="form-control-file" id="employee-image" />
+                            <img id="image-upload" />
+                            <span class="text-danger" id="employee-image-valid"></span>
+                        </div>
+                    </div>
+                </div>
+                
+            </section>
+
+            <section class="col col-md-6">
+                <div class="form-group">
+                    <label for="address" class="col-sm-2 control-label">Address</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <input type="text" class="form-control" maxlength="60" id="address" placeholder="Enter employee address" style="width:280px;" />
+                            <span class="text-danger" id="address-valid"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="city" class="col-sm-2 control-label">City</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="city" maxlength="15" placeholder="Enter employee city" style="width:280px;" />
+                            <span class="text-danger" id="city-valid"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="region" class="col-sm-2 control-label">Region</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="region" maxlength="15" placeholder="Enter employee region" style="width:280px;" />
+                            <span class="text-danger" id="region-valid"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="postal-code" class="col-sm-2 control-label">PostalCode</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="postal-code" maxlength="10" placeholder="Enter employee postal code" style="width:280px;" />
+                            <span class="text-danger" id="postal-code-valid"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="country" class="col-sm-2 control-label">Country</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="country" maxlength="15" placeholder="Enter employee country" style="width:280px;" />
+                            <span class="text-danger" id="country-valid"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="home-phone" class="col-sm-2 control-label">HomePhone</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="home-phone" maxlength="24" placeholder="Enter employee home phone" style="width:280px;" />
+                            <span class="text-danger" id="home-phone-valid"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="extension" class="col-sm-2 control-label">Extension</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="extension" maxlength="4" placeholder="Enter employee extension" style="width:280px;" />
+                            <span class="text-danger" id="extension-valid"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="notes" class="col-sm-2 control-label">Notes</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <textarea class="form-control" id="notes" style="width:280px;" rows="3"></textarea>
+                            <span class="text-danger" id="notes-valid"></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </form>
+    </section>
+</section>
+<section class="modal-footer">
+    <div class="form-group ">
+        <div class="col-md-12">
+            <input type="button" id="create" class="btn btn-primary  login-button" value="Create">
+            <input type="button" id="cancel" class="btn  login-button" data-dismiss="modal" value="Cancel">
+        </div>
+    </div>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/caret/1.0.0/jquery.caret.min.js"></script>
+<script src="~/Scripts/admin/employee/create.js"></script>
+
