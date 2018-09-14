@@ -14,5 +14,6 @@ namespace Sem3Project.Entites
 
         
         public virtual ICollection<OrderDTO> Orders { get; set; }
+        public object Title { get; internal set; }
     }
 }
