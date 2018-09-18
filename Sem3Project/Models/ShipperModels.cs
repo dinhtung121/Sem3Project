@@ -31,7 +31,6 @@ namespace Sem3Project.Models
                 ShipperID = e.ShipperID,
                 CompanyName = e.CompanyName,
                 Phone = e.Phone
-                // check commit
             }).FirstOrDefault();
             return list;
         }
@@ -50,9 +49,9 @@ namespace Sem3Project.Models
             SqlParameter paramPageSize = new SqlParameter("@PageSize", pageSize);
             SqlParameter paramRecordCount = new SqlParameter("@RecordCount", shipper.RecordCount);
             paramRecordCount.Direction = ParameterDirection.Output;
-            var listResult = db.Database.SqlQuery<Shipper>("EXEC [dbo].[usp_MaintainEmployeePage] @PageSearch, @SortOrder, @PageIndex, @PageSize, @RecordCount = @RecordCount OUTPUT", paramPageSearch, paramOrderColumn, paramPageIndex, paramPageSize, paramRecordCount).ToList();
+            var listResult = db.Database.SqlQuery<Shipper>("EXEC [dbo].[usp_MaintainShipperPage] @PageSearch, @SortOrder, @PageIndex, @PageSize, @RecordCount = @RecordCount OUTPUT", paramPageSearch, paramOrderColumn, paramPageIndex, paramPageSize, paramRecordCount).ToList();
             shipper.RecordCount = (int)paramRecordCount.Value;
-            shipper.Shipper = listResult.Select(e => new ShipperDTO()
+            shipper.Shippers = listResult.Select(e => new ShipperDTO()
             {
                 ShipperID = e.ShipperID,
                 CompanyName = e.CompanyName,
@@ -86,7 +85,6 @@ namespace Sem3Project.Models
         {
             Shipper shipperInsert = db.Shippers.FirstOrDefault(s => s.ShipperID == shipper.ShipperID);
 
-                shipperInsert.ShipperID = shipper.ShipperID;
                 shipperInsert.CompanyName = shipper.CompanyName;
                 shipperInsert.Phone = shipper.Phone;
 
@@ -101,17 +99,24 @@ namespace Sem3Project.Models
             }
         }
 
-        // đang để chưa làm
         public bool DeleteShipper(int id)
         {
             Shipper shipper = db.Shippers.FirstOrDefault(s => s.ShipperID == id);
             if (shipper != null)
             {
-                Account account = db.Accounts.FirstOrDefault(s => s.EmployeeId == id);
-                if (account != null)
+                Order order = db.Orders.FirstOrDefault(s => s.ShipVia == id);
+
+                if(order != null)
                 {
-                    db.Accounts.Remove(account);
+                    Order_Detail details = db.Order_Details.FirstOrDefault(s => s.OrderID == order.OrderID);
+                    if (details != null)
+                    {
+                        db.Order_Details.Remove(details);
+                        db.Orders.Remove(order);
+
+                    }
                 }
+                
                 db.Shippers.Remove(shipper);
                 if (db.SaveChanges() > 0)
                 {

@@ -13,40 +13,39 @@
             "destroy": true,
             "processing": true,
             "ajax":
-            {
-                url: "/Admin/Employee/GetEmployee",
-                method: "POST",
-                dataType: 'json'
-            },
-            "columns":
-            [
-                { "data": "EmployeeID", "searchable": true },
-                { "data": "FirstName", "searchable": true },
-                { "data": "LastName", "searchable": true },
-                { "data": "Title", "searchable": true },
-                { "data": "TitleOfCourtesy", "searchable": true },
                 {
-                    "data": "HireDate",
-                    "render": function (data, type, full)
-                    {
-                        return convert(convertNETDateTime(data));
-                    }
-                   
-                },  
-                {
-                    "render": function (data, type, JsonResultRow, meta) {
-                        return '<img src="/Upload/Employee/' + JsonResultRow.PhotoPath + '" style="width:64px;height: 64px;">';
-                    }
+                    url: "/Admin/Employee/GetEmployee",
+                    method: "POST",
+                    dataType: 'json'
                 },
-                {
-                    "render": function (data, type, full, meta) {
-                        count++;
-                        return '<a class="btn btn-lg btn-primary" href="#" onClick="showEdit(' + full.EmployeeID+')" title="Edit this employee"><span class="glyphicon glyphicon-edit"><i></i></span></a>' +
-                            '&nbsp;&nbsp;<a class="btn btn-lg btn-success" onClick="showDetail(' + full.EmployeeID +')" href="#" title="See details this employee"><span class="glyphicon glyphicon-align-justify"></span></a>' +
-                            '&nbsp;&nbsp;<button class="btn btn-lg btn-danger delete-button"  value="' + full.EmployeeID + '" title="Delete this employee"><span class="glyphicon glyphicon-trash"></span></button>';
+            "columns":
+                [
+                    { "data": "EmployeeID", "searchable": true },
+                    { "data": "FirstName", "searchable": true },
+                    { "data": "LastName", "searchable": true },
+                    { "data": "Title", "searchable": true },
+                    { "data": "TitleOfCourtesy", "searchable": true },
+                    {
+                        "data": "HireDate",
+                        "render": function (data, type, full) {
+                            return convert(convertNETDateTime(data));
+                        }
+
+                    },
+                    {
+                        "render": function (data, type, JsonResultRow, meta) {
+                            return '<img src="/Upload/Employee/' + JsonResultRow.PhotoPath + '" style="width:64px;height: 64px;">';
+                        }
+                    },
+                    {
+                        "render": function (data, type, full, meta) {
+                            count++;
+                            return '<a class="btn btn-lg btn-primary" href="#" onClick="showEdit(' + full.EmployeeID + ')" title="Edit this employee"><span class="glyphicon glyphicon-edit"><i></i></span></a>' +
+                                '&nbsp;&nbsp;<a class="btn btn-lg btn-success" onClick="showDetail(' + full.EmployeeID + ')" href="#" title="See details this employee"><span class="glyphicon glyphicon-align-justify"></span></a>' +
+                                '&nbsp;&nbsp;<button class="btn btn-lg btn-danger delete-button"  value="' + full.EmployeeID + '" title="Delete this employee"><span class="glyphicon glyphicon-trash"></span></button>';
+                        }
                     }
-                }
-            ]
+                ]
         }
 
     );
@@ -108,7 +107,7 @@
         }
     });
 
-    
+
 
 });
 

@@ -131,12 +131,19 @@
     <Content Include="Scripts\admin\employee\edit.js" />
     <Content Include="Scripts\admin\employee\index.js" />
     <Content Include="Scripts\admin\report.js" />
+    <Content Include="Scripts\admin\Shipper\Create.js" />
+    <Content Include="Scripts\admin\Shipper\Details.js" />
+    <Content Include="Scripts\admin\Shipper\Edit.js" />
+    <Content Include="Scripts\admin\Shipper\IndexShipper.js" />
     <Content Include="Scripts\ASPSnippets_Pager.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Areas\Admin\Views\Shipper\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shipper\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Shipper\Edit.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -272,7 +279,6 @@
     <Content Include="Scripts\jquery-ui-1.12.1.zip" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -283,6 +289,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

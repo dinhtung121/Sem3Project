@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Sem3Project.Models.ShipperModels>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout2.cshtml";
+}
+
+<h2>Maintain Shipper</h2>
+<section>
+    <section class="col col-md-10">
+        <section class="col col-md-offset-2">
+            <a onclick="createNewShipper()" href="#" class="btn btn-primary">Create New Shipper</a>
+        </section>
+    </section>
+    <table id="data-table" class="table table-hover">
+        <thead>
+            <tr>
+                <th>Shipper ID</th>
+                <th>Company Name</th>
+                <th>Phone</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="content-data"></tbody>
+    </table>
+</section>
+<div id="dashboardModalWrapper" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="width:100%; height:auto;">
+        <div class="modal-content">
+            <div id='dashboardModalContent'></div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/admin/Shipper/IndexShipper.js"></script>
+<script type="text/javascript">
+    function createNewShipper(e) {
+
+        var url = "/Admin/Shipper/Create";
+
+        $('#dashboardModalContent').load(url, function () {
+            $('#dashboardModalWrapper').modal({
+                backdrop: 'static',
+                keyboard: false
+            }, 'show');
+        });
+
+    }
+    function showEdit(e) {
+
+        var url = "/Admin/Shipper/Edit?id=" + e;
+
+        $('#dashboardModalContent').load(url, function () {
+            $('#dashboardModalWrapper').modal({
+                backdrop: 'static',
+                keyboard: false
+            }, 'show');
+        });
+
+    }
+    function showDetail(e) {
+
+        var url = "/Admin/Shipper/Details?id=" + e;
+
+        $('#dashboardModalContent').load(url, function () {
+            $('#dashboardModalWrapper').modal({
+                backdrop: 'static',
+                keyboard: false
+            }, 'show');
+        });
+
+    }
+</script>
