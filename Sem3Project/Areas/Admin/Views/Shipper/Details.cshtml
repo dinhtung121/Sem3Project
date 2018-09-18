@@ -1,0 +1,52 @@
+﻿@model Sem3Project.Entites.ShipperDTO
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+
+}
+<section class="modal-header">
+    <h2 class="text-center">@Model.CompanyName &nbsp; @Model.Phone</h2>
+</section>
+
+
+
+<div class="modal-body row">
+    
+    <h4 class="col col col-md-offset-4">First Name          : @Model.CompanyName</h4>
+    <h4 class="col col col-md-offset-4">Last Name           : @Model.Phone</h4>
+</div>
+<section class="modal-footer">
+    <p>
+        <a class="btn btn-lg btn-primary" onclick="showEdit('@Model.ShipperID')" href="#" title="Edit this shipper"><span class="glyphicon glyphicon-edit"><i></i></span></a>
+        &nbsp;&nbsp;<button class="btn btn-lg btn-danger" id="delete-button" data-dismiss="modal"  value="@Model.ShipperID" title="Delete this shipper"><span class="glyphicon glyphicon-trash"></span></button>&nbsp;
+        <a class="btn btn-lg btn-success" href="#" data-dismiss="modal" title="Back to list"><span class="glyphicon glyphicon-list"><i></i></span></a>
+    </p>
+</section>
+
+<script src="~/Scripts/admin/Shipper/Details.js"></script>
+<script type="text/javascript">
+    function showEdit(e) {
+
+        var url = "/Admin/Shipper/Edit?id=" + e;
+
+        $('#dashboardModalContent').load(url, function () {
+            $('#dashboardModalWrapper').modal({
+                backdrop: 'static',
+                keyboard: false
+            }, 'show');
+        });
+
+    }
+    function showDetail(e) {
+
+        var url = "/Admin/Shipper/Details?id=" + e;
+
+        $('#dashboardModalContent').load(url, function () {
+            $('#dashboardModalWrapper').modal({
+                backdrop: 'static',
+                keyboard: false
+            }, 'show');
+        });
+
+    }
+</script>

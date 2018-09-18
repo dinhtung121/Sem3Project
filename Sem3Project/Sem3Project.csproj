@@ -144,6 +144,7 @@
     <Content Include="Areas\Admin\Views\Shipper\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shipper\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Shipper\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Shipper\Details.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

@@ -49,7 +49,8 @@ namespace Sem3Project.Areas.Admin.Controllers
 
         public ActionResult Details(int id)
         {
-            return PartialView(new EmployeeModels().GetEmployeeById(id));
+            var data = new EmployeeModels().GetEmployeeById(id);
+            return PartialView(data);
         }
         public ActionResult Edit(int id)
         {
