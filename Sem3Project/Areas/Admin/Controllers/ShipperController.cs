@@ -78,6 +78,7 @@ namespace Sem3Project.Areas.Admin.Controllers
 
             ViewBag.listAdmin = new ShipperModels().GetAllShipper().Where(s => !s.CompanyName.Contains("VKG")).ToList();
             return PartialView();
+            
         }
 
         [HttpPost]
